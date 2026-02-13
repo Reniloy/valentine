@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Sa'yo</title>
+    <link rel="stylesheet" href="valentine.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main>
+        <section id="page1" class="page active">
+            <div class="content-wrapper right-aligned">
+                <div class="glass-card">
+                    <div class="gif-container">
+                        <img src="image/dateme-squirtle.gif" alt="Cute Gif">
+                    </div>
+                    <h1 class="main-title">Will you be my Valentine?</h1>
+                    <p class="subtitle">Please say yes...</p>
+                    
+                    <div class="button-group">
+                        <button id="btnYes" class="btn btn-primary">YES</button>
+                        <button id="btnNo" class="btn btn-secondary">NO</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page2" class="page hidden">
+            <div class="split-container">
+                
+                <div class="left-panel">
+                    <img src="image/rose-removebg-preview.png" class="side-image" alt="Side Image">
+                </div>
+
+                <div class="right-panel">
+                    <div id="petals-container"></div>
+
+                    <div class="envelope-wrapper" id="envelope">
+                        <div class="envelope">
+                            <div class="front flap"></div>
+                            <div class="front pocket"></div>
+                            
+                            <div class="letter">
+                                <div class="letter-content">
+                                    <h2>Ayieee haha</h2>
+                                    <p>
+                                        Eto po yung ginagawa ko simula nung naglaptop ako, wala akong gift sayo bukas &#128557. bawi nalang po ako pag lumabas na tayo.
+                                        <br><br>
+                                        Happy Valentine's Day! 🌹
+                                    </p>
+                                    <button id="btnNextPage" class="btn-link">Click mo to.&rarr;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="instruction-text">Click the envelope to open</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page3" class="page hidden">
+            <div class="mosaic-wrapper">
+                <div class="mosaic-text" id="mosaicText"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="valentine.js"></script>
+</body>
+</html>

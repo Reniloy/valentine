@@ -1,0 +1,241 @@
+/* ================= GLOBAL VARIABLES ================= */
+:root {
+    --bg-color: #050505;
+    --primary-red: #8a0303;
+    --accent-red: #ff0000;
+    --text-white: #f0f0f0;
+    --paper-color: #fdfbf7;
+    --glass-bg: rgba(20, 0, 0, 0.6);
+    --border-color: rgba(138, 3, 3, 0.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-color);
+    background-image: url('image/heart.jpg'); /* Background ng Page 1 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-white);
+}
+
+/* ================= PAGE STRUCTURE ================= */
+.page {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transition: opacity 1s ease-in-out; opacity: 0; pointer-events: none; z-index: 0;
+}
+.page.active { opacity: 1; pointer-events: all; z-index: 10; }
+
+.content-wrapper {
+    width: 100%; height: 100%; display: flex; align-items: center; padding: 50px;
+}
+
+/* --- PAGE 1 ALIGNMENT (UPDATED: RIGHT SIDE) --- */
+.right-aligned {
+    justify-content: flex-end; /* Push content to the right */
+    padding-right: 10%;        /* Distance from the right edge */
+}
+
+.center-aligned { justify-content: center; flex-direction: column; }
+
+/* ================= COMPONENT: GLASS CARD ================= */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    padding: 40px; border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 30px rgba(138, 3, 3, 0.4);
+    text-align: center; max-width: 450px; width: 100%;
+}
+
+.gif-container img { width: 100%; max-width: 250px; border-radius: 12px; margin-bottom: 20px; }
+.main-title { font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--accent-red); margin-bottom: 10px; }
+.subtitle { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8; }
+
+
+
+/* ================= BUTTONS ================= */
+.button-group { position: relative; display: flex; justify-content: center; gap: 20px; height: 60px; }
+.btn { padding: 12px 35px; font-size: 1rem; font-weight: 600; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; }
+.btn-primary { background: var(--primary-red); color: white; box-shadow: 0 0 10px var(--primary-red); z-index: 100; }
+.btn-primary:hover { background: var(--accent-red); transform: scale(1.1); }
+
+
+
+.btn-secondary {
+    background: #333;
+    color: #ccc;
+    position: relative;
+    z-index: 1000; 
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+/* ================= PAGE 2 FIXED LAYOUT ================= */
+.split-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.left-panel {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: relative; /* Para sa image fitting */
+}
+
+.side-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Sisiguraduhin na sakop ang buong left side */
+}
+
+.right-panel {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    
+    /* FIX: Ibababa natin ang content gamit ang flex-end */
+    justify-content: flex-end; 
+    padding-bottom: 10vh; /* Distance mula sa pinaka-ibaba */
+}
+
+/* ================= ENVELOPE FIXES ================= */
+.envelope-wrapper {
+    position: relative; 
+    width: 300px; 
+    height: 200px;
+    cursor: pointer; 
+    transition: transform 0.5s;
+    /* Tinanggal ko yung margin-top para controlled natin ang pwesto */
+}
+
+.envelope-wrapper:hover { transform: scale(1.05); }
+
+.envelope {
+    position: relative; width: 100%; height: 100%;
+    background: var(--primary-red); border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.envelope .flap {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border-left: 150px solid transparent; border-right: 150px solid transparent;
+    border-top: 110px solid #a30000; transform-origin: top;
+    transition: transform 0.6s ease 0.5s; z-index: 5;
+}
+
+.envelope .pocket {
+    position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+    border-left: 150px solid var(--primary-red); border-right: 150px solid var(--primary-red);
+    border-bottom: 100px solid #ba0404; border-top: 100px solid transparent;
+    border-radius: 0 0 10px 10px; z-index: 4;
+}
+
+.letter {
+    position: absolute; 
+    bottom: 0; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 90%; 
+    height: 90%; 
+    background: var(--paper-color);
+    padding: 20px; 
+    text-align: center; 
+    color: #333;
+    border-radius: 5px; 
+    transition: all 1s ease 1s; 
+    z-index: 3;
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+
+/* OPEN STATE - MAGIC FORMULA */
+.envelope-wrapper.open .envelope .flap { 
+    transform: rotateX(180deg); 
+    z-index: 1; 
+    transition-delay: 0s; 
+}
+
+.envelope-wrapper.open .letter {
+    /* LOGIC: 
+       bottom: 100px = Aangat siya mula sa loob ng sobre.
+       height: 350px = Hahaba siya pero hindi sosobra sa screen height.
+       scale(1.0)    = Tinanggal ko yung scale zoom para hindi lumabo at di lumagpas.
+    */
+    bottom: 100px; 
+    transform: translateX(-50%); /* Center horizontal lang, wag na vertical translate */
+    height: 350px; 
+    z-index: 10; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.instruction-text {
+    margin-top: 20px; /* Binabaan ko margin */
+    color: #aaa; 
+    font-size: 0.9rem; 
+    animation: blink 2s infinite;
+}
+
+.letter-content { opacity: 0; transition: opacity 0.5s ease 2s; }
+.letter h2 { font-family: 'Dancing Script', cursive; color: var(--primary-red); margin-bottom: 10px; }
+.letter p { font-size: 0.9rem; line-height: 1.5; }
+.btn-link { background: none; border: none; color: var(--primary-red); text-decoration: underline; cursor: pointer; margin-top: 15px; font-weight: bold; }
+
+
+
+.envelope-wrapper.open .letter-content { opacity: 1; }
+
+.instruction-text { margin-top: 50px; color: #aaa; font-size: 0.9rem; animation: blink 2s infinite; }
+@keyframes blink { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+
+.mosaic-wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: black; /* Background ng page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.mosaic-text {
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', monospace; /* Mas maganda kung monospace o bold */
+    font-weight: 900; /* Bold para kita yung image sa loob */
+    font-size: 14px;  /* Liitan mo to kung gusto mo mas HD yung image */
+    line-height: 1;
+    word-wrap: break-word; /* Para mag-wrap yung text */
+    text-align: justify;
+    
+    /* THE MAGIC: Text Masking */
+    background-image: url('image/dianne.png'); /* PALITAN MO NUNG IMAGE NIYO */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Cool effect pag nag scroll */
+    
+    -webkit-background-clip: text; /* Para sa Chrome/Safari */
+    background-clip: text;
+    
+    color: transparent; /* Gawing transparent ang text para lumabas yung image sa likod */
+    
+    /* Black & White Filter */
+    filter: grayscale(100%); 
+    transition: filter 2s ease; /* Transition effect */
+}
+
+/* Optional: Pag hinover, magkaka-kulay */
+.mosaic-text:hover {
+    filter: grayscale(0%);
+}
