@@ -14,7 +14,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-color);
-    background-image: url('image/heart.jpg'); /* Background ng Page 1 */
+    background-image: url('image/heart.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,10 +34,10 @@ body {
     width: 100%; height: 100%; display: flex; align-items: center; padding: 50px;
 }
 
-/* --- PAGE 1 ALIGNMENT (UPDATED: RIGHT SIDE) --- */
+/* --- PAGE 1 ALIGNMENT ---- */
 .right-aligned {
-    justify-content: flex-end; /* Push content to the right */
-    padding-right: 10%;        /* Distance from the right edge */
+    justify-content: flex-end;
+    padding-right: 10%;        
 }
 
 .center-aligned { justify-content: center; flex-direction: column; }
@@ -85,13 +85,13 @@ body {
     width: 50%;
     height: 100%;
     overflow: hidden;
-    position: relative; /* Para sa image fitting */
+    position: relative; 
 }
 
 .side-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Sisiguraduhin na sakop ang buong left side */
+    object-fit: cover; 
 }
 
 .right-panel {
@@ -101,9 +101,9 @@ body {
     flex-direction: column;
     align-items: center; 
     
-    /* FIX: Ibababa natin ang content gamit ang flex-end */
+ 
     justify-content: flex-end; 
-    padding-bottom: 10vh; /* Distance mula sa pinaka-ibaba */
+    padding-bottom: 10vh;
 }
 
 /* ================= ENVELOPE FIXES ================= */
@@ -113,7 +113,7 @@ body {
     height: 200px;
     cursor: pointer; 
     transition: transform 0.5s;
-    /* Tinanggal ko yung margin-top para controlled natin ang pwesto */
+  
 }
 
 .envelope-wrapper:hover { transform: scale(1.05); }
@@ -167,20 +167,16 @@ body {
 }
 
 .envelope-wrapper.open .letter {
-    /* LOGIC: 
-       bottom: 100px = Aangat siya mula sa loob ng sobre.
-       height: 350px = Hahaba siya pero hindi sosobra sa screen height.
-       scale(1.0)    = Tinanggal ko yung scale zoom para hindi lumabo at di lumagpas.
-    */
+  
     bottom: 100px; 
-    transform: translateX(-50%); /* Center horizontal lang, wag na vertical translate */
+    transform: translateX(-50%); 
     height: 350px; 
     z-index: 10; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .instruction-text {
-    margin-top: 20px; /* Binabaan ko margin */
+    margin-top: 20px; 
     color: #aaa; 
     font-size: 0.9rem; 
     animation: blink 2s infinite;
@@ -202,7 +198,7 @@ body {
 .mosaic-wrapper {
     width: 100%;
     height: 100%;
-    background-color: black; /* Background ng page */
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -212,30 +208,24 @@ body {
 .mosaic-text {
     width: 100%;
     height: 100%;
-    font-family: 'Montserrat', monospace; /* Mas maganda kung monospace o bold */
-    font-weight: 900; /* Bold para kita yung image sa loob */
-    font-size: 14px;  /* Liitan mo to kung gusto mo mas HD yung image */
+    font-family: 'Montserrat', monospace; 
+    font-weight: 900; 
+    font-size: 14px;  
     line-height: 1;
-    word-wrap: break-word; /* Para mag-wrap yung text */
+    word-wrap: break-word; 
     text-align: justify;
-    
-    /* THE MAGIC: Text Masking */
-    background-image: url('image/dianne.png'); /* PALITAN MO NUNG IMAGE NIYO */
+    background-image: url('image/dianne.png'); 
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Cool effect pag nag scroll */
-    
-    -webkit-background-clip: text; /* Para sa Chrome/Safari */
+    background-attachment: fixed; 
+    -webkit-background-clip: text; 
     background-clip: text;
-    
-    color: transparent; /* Gawing transparent ang text para lumabas yung image sa likod */
-    
-    /* Black & White Filter */
+    color: transparent;
     filter: grayscale(100%); 
-    transition: filter 2s ease; /* Transition effect */
+    transition: filter 2s ease; 
 }
 
-/* Optional: Pag hinover, magkaka-kulay */
+
 .mosaic-text:hover {
     filter: grayscale(0%);
 }
